@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>高雄建商售價計算機</title>
+<style>
+body {font-family:"Microsoft JhengHei";margin:40px;background:#fafafa;}
+label{display:block;margin-top:10px;}
+input{width:120px;padding:4px;}
+button{margin-top:15px;padding:6px 12px;}
+#result{margin-top:20px;font-size:18px;font-weight:bold;}
+</style>
+</head>
+<body>
+<h2>🏗️ 高雄建商售價計算機</h2>
+
+<label>土地單價 (萬/坪)：<input id="land" type="number"></label>
+<label>容積率 (%)：<input id="far" type="number"></label>
+<label>建蔽率 (%)：<input id="coverage" type="number"></label>
+<label>營建成本 (萬/坪)：<input id="build" type="number"></label>
+<label>目標毛利率 (%)：<input id="profit" type="number"></label>
+
+<button onclick="calc()">計算</button>
+<div id="result"></div>
+
+<script>
+function calc(){
+  const land=parseFloat(document.getElementById('land').value)||0;
+  const far=parseFloat(document.getElementById('far').value)||0;
+  const coverage=parseFloat(document.getElementById('coverage').value)||0;
+  const build=parseFloat(document.getElementById('build').value)||0;
+  const profit=parseFloat(document.getElementById('profit').value)||0;
+
+  if(!land||!far||!coverage){result.innerHTML='請輸入完整資料';return;}
+  const sale=((land+build)/(coverage/100*far/400))*(1+profit/100);
+  result.innerHTML="👉 預估單坪售價約 "+sale.toFixed(1)+" 萬 / 坪";
+}
+</script>
+</body>
+</html>
