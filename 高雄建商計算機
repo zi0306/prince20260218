@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>高雄建商售價試算器</title>
+<style>
+body {font-family: "Microsoft JhengHei",sans-serif; margin:30px;}
+label {display:block;margin-top:10px;}
+input {width:120px;}
+button {margin-top:15px;}
+</style>
+</head>
+<body>
+<h2>🏗️ 高雄建商售價試算器</h2>
+<label>土地單價(萬/坪)：<input type="number" id="landPrice"></label>
+<label>容積率(%)：<input type="number" id="far"></label>
+<label>建蔽率(%)：<input type="number" id="coverage"></label>
+<label>營建成本(萬/坪)：<input type="number" id="buildCost"></label>
+<label>目標毛利率(%)：<input type="number" id="profit"></label>
+<button onclick="calc()">計算售價</button>
+<h3 id="result"></h3>
+<script>
+function calc(){
+  const land=parseFloat(landPrice.value)||0;
+  const far=parseFloat(far.value)||0;
+  const coverage=parseFloat(coverage.value)||0;
+  const build=parseFloat(buildCost.value)||0;
+  const profit=parseFloat(profit.value)||0;
+  const sale = ((land + build)/ (coverage/100 * far/400) )*(1+profit/100);
+  result.innerHTML = "👉 預估單坪售價約 " + sale.toFixed(1) + " 萬 / 坪";
+}
+</script>
+</body>
+</html>
+
